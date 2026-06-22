@@ -1,0 +1,29 @@
+# Captured protocol traffic (raw dumps from the logging stub) — keep out of git;
+# curated/annotated captures referenced by docs/PROTOCOL.md may be committed deliberately.
+server/captures/
+captures/
+*.pcap
+*.pcapng
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

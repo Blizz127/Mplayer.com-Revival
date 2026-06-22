@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mplayer-server"
+version = "0.0.1"
+description = "Server reimplementation for the Mplayer.com revival (Phase 1: protocol-capture logging stub)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "GPL-3.0-or-later" }
+# Runtime is standard-library only by design (asyncio). Dependencies get added
+# per component as later phases need them.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+mplayer-stub = "mplayer_server.__main__:main"
+
+[tool.setuptools]
+packages = ["mplayer_server"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# No pytest-asyncio needed: async tests drive the loop with asyncio.run().

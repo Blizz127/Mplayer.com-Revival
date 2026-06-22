@@ -1,0 +1,16 @@
+# Normalize line endings for text; let git auto-detect.
+* text=auto
+
+# Treat preserved binaries as binary (no EOL munging, no textual diffs).
+*.exe   binary
+*.dll   binary
+*.cab   binary
+*.bin   binary
+
+# --- Git LFS (preferred storage for preserved binaries) ---
+# git-lfs was not installed when this repo was created, so these are disabled.
+# After `git lfs install` and migrating (see preservation/README.md), uncomment:
+# *.exe   filter=lfs diff=lfs merge=lfs -text
+# *.dll   filter=lfs diff=lfs merge=lfs -text
+# *.cab   filter=lfs diff=lfs merge=lfs -text
+# *.bin   filter=lfs diff=lfs merge=lfs -text

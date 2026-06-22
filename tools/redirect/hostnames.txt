@@ -1,0 +1,11 @@
+# Hostnames the original Mplayer client contacts.
+#
+# One hostname per line; "#" starts a comment. EMPTY of real entries until
+# Phase 1 extracts them from the client binary/INI (then mirror them into
+# docs/PROTOCOL.md). The commented examples below are GUESSES to be confirmed
+# or deleted — do not assume they are correct.
+#
+# www.mplayer.com
+# pop.mpath.com
+# register.mplayer.com
+# chat.mplayer.com
