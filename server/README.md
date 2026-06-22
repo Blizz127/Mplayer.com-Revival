@@ -31,9 +31,12 @@ old machine's DNS resolver at this host. The DNS stub logs every hostname the cl
 matched ones with your capture server's IP — discovery and redirection in one:
 
 ```bash
-sudo python -m mplayer_server.dns_stub --ip 192.168.1.50 --match mplayer.com mpath.com --upstream 1.1.1.1
+sudo python -m mplayer_server.dns_stub --host 100.111.220.11 --ip 100.111.220.11 --match mplayer.com mpath.com --upstream 1.1.1.1
 # or --all to redirect every name (capture-all) for the first run
 ```
+
+Here `100.111.220.11` is the capture host's stable **Tailscale IP** (see `config.CAPTURE_HOST`); the Win98 box
+reaches it via a one-line static route. Details in [../docs/win98-bench.md](../docs/win98-bench.md).
 
 ## Develop & test
 

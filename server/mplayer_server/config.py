@@ -11,6 +11,12 @@ from .logging_stub import Binding
 # Where captures are written by default.
 DEFAULT_CAPTURE_DIR = "captures"
 
+# Stable address of the capture/server host. We use a Tailscale IP so the address
+# survives the home/public IP changing — it's the canonical target baked into the
+# client's DNS/HOSTS redirect. See docs/win98-bench.md ("Using your Tailscale IP").
+# Note: Win98 can't run Tailscale; it reaches this via a static route to the host.
+CAPTURE_HOST = "100.111.220.11"
+
 # Hostnames the original client is known to contact. EMPTY until Phase 1 extracts
 # them from the client binary/INI. Record discoveries here (and in
 # tools/redirect/hostnames.txt) as: "hostname"  # purpose, evidence
