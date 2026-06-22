@@ -15,8 +15,12 @@ Foundation so the real work has a home.
 - [x] Document the known architecture and this roadmap (`docs/`).
 - [x] Logging stub server for protocol capture (`server/mplayer_server/`).
 - [x] Hostname-redirect helper + hostname registry (`tools/redirect/`).
+- [x] Client inspector (`tools/client_inspect.py`) — auto-extracts hostnames/ports/strings from the client.
+- [x] Landing + service-status page (`web/`).
+- [x] CI: run tests on every push (`.github/workflows/ci.yml`).
+- [x] Confirmed extraction can't be done in a Linux container (payload fully compressed; Wine uninstallable) — it's
+      a Windows-side step. See `docs/installer-analysis.md`.
 - [ ] Migrate preserved binaries to Git LFS once `git lfs` is available (see `preservation/README.md`).
-- [ ] Stand up CI (run `pytest` on push).
 
 ## Phase 1 — Protocol reverse-engineering  🔴 _next; needs a Windows test bench_
 

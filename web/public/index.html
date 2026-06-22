@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mplayer.com Revival — coming back online</title>
+  <meta name="description" content="Reviving Mplayer.com, the classic late-90s online gaming, chat, and voice community." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="wordmark">
+      <span class="m">M</span><span class="rest">PLAYER</span><span class="dot">.com</span>
+    </div>
+    <div class="revival-tag">R E V I V A L</div>
+    <p class="tagline">The classic online gaming, chat &amp; voice community — coming back online.</p>
+    <div class="ticker" role="status">
+      <span>◍ STATUS: Phase&nbsp;1 — reverse-engineering the original client protocol &nbsp;·&nbsp; servers not live yet &nbsp;·&nbsp; preservation in progress &nbsp;·&nbsp;</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>What is this?</h2>
+      <p>
+        <strong>Mplayer.com</strong> (Mpath Interactive, 1996–2001) was a pioneering free online service for
+        playing PC games together, with chat rooms, animated emotes, and real-time <em>voice</em>. It was absorbed
+        into GameSpy and shut down in 2001. This project brings it back the same way the
+        <a href="https://github.com/GameProgressive/RetroSpyServer">GameSpy</a> and TEN revivals did: preserve the
+        original client, reverse-engineer its protocol, and re-stand-up the servers it used to talk to.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Service status</h2>
+      <ul class="status-grid">
+        <li><span class="svc">Auth / login</span><span class="pill off">offline</span></li>
+        <li><span class="svc">Lobby &amp; chat</span><span class="pill off">offline</span></li>
+        <li><span class="svc">Matchmaking</span><span class="pill off">offline</span></li>
+        <li><span class="svc">Game broker</span><span class="pill off">offline</span></li>
+        <li><span class="svc">Voice relay</span><span class="pill off">offline</span></li>
+        <li><span class="svc">Protocol capture</span><span class="pill wip">in progress</span></li>
+      </ul>
+      <p class="fineprint">Status is static for now and updated by hand as milestones land. Track them on the
+        <a href="https://github.com/Blizz127/Mplayer.com-Revival/blob/main/docs/ROADMAP.md">roadmap</a>.</p>
+    </section>
+
+    <section class="panel">
+      <h2>How it comes back</h2>
+      <ol class="steps">
+        <li><strong>Preserve</strong> the original client. <span class="done">done</span></li>
+        <li><strong>Reverse-engineer</strong> the wire protocol (login, lobby, matchmaking, voice).</li>
+        <li><strong>Reimplement</strong> the servers in Python.</li>
+        <li><strong>Redirect</strong> the client's old hostnames to them — no binary patching.</li>
+      </ol>
+      <p>Two clients, one protocol: the <strong>original</strong> client (faithful) and a new
+        <strong>cross-platform</strong> client that runs natively on Windows&nbsp;11, macOS &amp; Linux.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://github.com/Blizz127/Mplayer.com-Revival">GitHub</a> ·
+    <a href="https://github.com/Blizz127/Mplayer.com-Revival/blob/main/docs/ROADMAP.md">Roadmap</a> ·
+    <a href="https://github.com/Blizz127/Mplayer.com-Revival/blob/main/docs/ARCHITECTURE.md">Architecture</a>
+    <p class="fineprint">A community preservation project. Not affiliated with Mpath, HearMe, GameSpy, or IGN.
+      Mplayer&trade; and related marks belong to their respective owners.</p>
+  </footer>
+</body>
+</html>

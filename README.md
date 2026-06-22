@@ -1,5 +1,7 @@
 # Mplayer.com Revival
 
+[![CI](https://github.com/Blizz127/Mplayer.com-Revival/actions/workflows/ci.yml/badge.svg)](https://github.com/Blizz127/Mplayer.com-Revival/actions/workflows/ci.yml)
+
 A community preservation project to bring back **[Mplayer.com](https://en.wikipedia.org/wiki/MPlayer.com)** — the
 pioneering online gaming, chat, and voice service operated by Mpath Interactive from **late 1996 until 2001**, when
 it was absorbed into GameSpy and shut down.
@@ -48,8 +50,10 @@ Both are first-class goals. See [docs/client-modernization.md](docs/client-moder
 ├── preservation/          The original client, archived with checksums
 ├── server/                Python reimplementation of the Mplayer servers
 │   └── mplayer_server/       Currently: a logging stub server for protocol capture
-└── tools/
-    └── redirect/          Helpers to point the original client at our servers
+├── tools/
+│   ├── client_inspect.py     Pull hostnames/ports/strings from the extracted client
+│   └── redirect/             Helpers to point the original client at our servers
+└── web/                   Landing + service-status page (python web/serve.py)
 ```
 
 ---
@@ -71,6 +75,21 @@ python -m pytest
 Point the original client at `127.0.0.1` (see `tools/redirect/`) and the captures land in `server/captures/`.
 Once we know the real hostnames and ports (Phase 1), they get recorded in `tools/redirect/hostnames.txt` and
 `docs/PROTOCOL.md`.
+
+### See the landing page
+
+```bash
+python web/serve.py        # -> http://127.0.0.1:8000  (landing + service-status board)
+```
+
+### Inspect an extracted client (Phase 1)
+
+After running the original installer on Windows (or otvdm) and extracting the client, auto-pull its network
+indicators:
+
+```bash
+python tools/client_inspect.py /path/to/extracted/client --hostnames-out found.txt
+```
 
 ---
 

@@ -39,6 +39,23 @@ Parsing the NE header:
    path forward is dynamic: **extract → install → inspect the installed client** (32-bit?) and **capture its
    traffic**.
 
+## Extraction attempts (what does and doesn't work)
+
+We tried to extract the client *without* a Windows machine. Results:
+
+- **Entropy map → the whole payload is compressed.** Every 16 KiB block past the stub measures ~7.97–7.99
+  bits/byte (8.0 is the maximum); only the first block (the NE stub) is lower (~6.85). There are **no raw-stored
+  files** to carve — the lone GIF/BMP/filename "hits" from the signature scan are false positives inside
+  high-entropy data. The client EXE and its hostnames are inside the compressed blob.
+- **`7-Zip` can't open it.** It's an NE binary, and `GLBSSTUB` is an obscure, undocumented self-extractor; no
+  general-purpose extractor recognizes the container.
+- **Wine isn't installable in our Linux CI container** (broken `i386` dependency chain), so we can't self-extract
+  it here either.
+
+**Conclusion:** extraction requires *running the stub* (it self-extracts to `%TEMP%`) on a 16-bit-capable Windows
+environment, or reversing the stub's decompressor. This is a Windows-side step. Once the client files exist, run
+[`tools/client_inspect.py`](../tools/client_inspect.py) on them to pull hostnames/ports/strings automatically.
+
 ## Next steps (Phase 1)
 
 - [ ] Run the installer under a 16-bit-capable Windows environment and capture the **list of installed files**.

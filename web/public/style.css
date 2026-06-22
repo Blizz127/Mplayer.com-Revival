@@ -1,0 +1,95 @@
+/* Mplayer.com Revival — landing/status page.
+   "Modern retro": a late-90s service vibe that's still readable today. */
+
+:root {
+  --bg: #0a0a1f;
+  --bg2: #12123a;
+  --ink: #d8d8f0;
+  --muted: #8a8ab8;
+  --cyan: #38e1ff;
+  --magenta: #ff4fd6;
+  --green: #46e08a;
+  --amber: #ffcf5a;
+  --panel: rgba(20, 20, 56, 0.72);
+  --border: #2b2b66;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #1d1d57 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.55;
+}
+
+/* subtle starfield */
+.stars {
+  position: fixed; inset: 0; z-index: -1; opacity: 0.5;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 60%, #cfe, transparent),
+    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 20%, #9cf, transparent),
+    radial-gradient(1px 1px at 55% 15%, #fff, transparent);
+}
+
+.hero { text-align: center; padding: 4rem 1rem 1rem; }
+
+.wordmark { font-weight: 800; letter-spacing: 1px; font-size: clamp(2.6rem, 9vw, 5.5rem); line-height: 1; }
+.wordmark .m { color: var(--cyan); text-shadow: 0 0 18px var(--cyan); }
+.wordmark .rest { color: #fff; }
+.wordmark .dot { color: var(--magenta); text-shadow: 0 0 18px var(--magenta); }
+
+.revival-tag {
+  margin-top: .4rem; color: var(--amber); font-weight: 700;
+  letter-spacing: .5em; font-size: clamp(.8rem, 2.5vw, 1.1rem); text-indent: .5em;
+}
+
+.tagline { color: var(--muted); max-width: 40ch; margin: 1rem auto 1.5rem; }
+
+/* marquee-style ticker, but CSS-animated and motion-safe */
+.ticker {
+  overflow: hidden; white-space: nowrap; border-block: 1px solid var(--border);
+  background: rgba(0,0,0,.35); font-family: ui-monospace, "Courier New", monospace;
+  color: var(--cyan); font-size: .85rem; padding: .5rem 0;
+}
+.ticker span { display: inline-block; padding-left: 100%; animation: scroll 22s linear infinite; }
+@keyframes scroll { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) {
+  .ticker span { animation: none; padding-left: 0; text-align: center; display: block; white-space: normal; }
+}
+
+main { max-width: 760px; margin: 2rem auto; padding: 0 1rem; display: grid; gap: 1.25rem; }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.25rem 1.5rem; backdrop-filter: blur(4px);
+}
+.panel h2 { margin-top: 0; color: var(--cyan); font-size: 1.15rem; letter-spacing: .03em; }
+a { color: var(--amber); }
+a:hover { color: #fff; }
+
+.status-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.status-grid li { display: flex; justify-content: space-between; align-items: center; gap: .75rem;
+  background: rgba(0,0,0,.25); border: 1px solid var(--border); border-radius: 8px; padding: .5rem .75rem; }
+.svc { font-size: .92rem; }
+.pill { font-family: ui-monospace, monospace; font-size: .72rem; text-transform: uppercase;
+  letter-spacing: .06em; padding: .15rem .5rem; border-radius: 999px; white-space: nowrap; }
+.pill.off { color: #ff9a9a; background: rgba(255,80,80,.12); border: 1px solid rgba(255,80,80,.35); }
+.pill.wip { color: var(--amber); background: rgba(255,207,90,.12); border: 1px solid rgba(255,207,90,.4); }
+
+.steps { padding-left: 1.2rem; }
+.steps li { margin: .25rem 0; }
+.done { color: var(--green); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid rgba(70,224,138,.4); border-radius: 999px; padding: .05rem .45rem; margin-left: .4rem; }
+
+footer { text-align: center; color: var(--muted); padding: 2rem 1rem 3rem; }
+.fineprint { color: var(--muted); font-size: .78rem; }
+
+@media (max-width: 520px) { .status-grid { grid-template-columns: 1fr; } }
