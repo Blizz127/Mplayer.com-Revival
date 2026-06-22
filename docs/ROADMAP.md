@@ -22,18 +22,20 @@ Foundation so the real work has a home.
       a Windows-side step. See `docs/installer-analysis.md`.
 - [ ] Migrate preserved binaries to Git LFS once `git lfs` is available (see `preservation/README.md`).
 
-## Phase 1 — Protocol reverse-engineering  🔴 _next; needs a Windows test bench_
+## Phase 1 — Protocol reverse-engineering  🔴 _next — bench guide ready_
 
 Learn exactly what the client says to the servers. **This is the gating phase** — everything downstream depends on it.
+Full walkthrough: **[win98-bench.md](win98-bench.md)** (a period Windows 98 box, like the TEN project).
 
-- [ ] **Extract the client.** Run the 16-bit installer in a 16-bit-capable environment (32-bit Windows VM, or
-      [otvdm/winevdm](https://github.com/otya128/winevdm)). Catalog the installed files (EXEs, DLLs, INIs).
-- [ ] **Find the hostnames/ports.** Pull hardcoded `*.mplayer.com` / `*.mpath.com` names and ports from the client
-      binaries and INI/registry settings. Record them in `tools/redirect/hostnames.txt` and `docs/PROTOCOL.md`.
-- [ ] **Capture traffic.** Redirect those hostnames to the logging stub; drive the client (launch, login attempt,
-      lobby) and hex-dump everything it sends.
+- [ ] **Set up the bench.** Win98 box + a capture host on the same LAN running our Python tools.
+- [ ] **Install the client** from `preservation/client/MplayerInstaller.exe` on the Win98 box.
+- [ ] **Discover hostnames.** Point Win98's DNS at the capture host's `mplayer_server.dns_stub`; launch the client
+      and read off every hostname it looks up. Record them in `tools/redirect/hostnames.txt` and `docs/PROTOCOL.md`.
+- [ ] **Discover ports** via `tcpdump`/Wireshark on the capture host.
+- [ ] **Capture traffic.** Run the logging stub on those ports; drive the client and hex-dump what it sends.
 - [ ] **Document the framing.** Message boundaries, headers, opcodes, endianness, string encoding → `docs/PROTOCOL.md`.
 - [ ] **Decode the login handshake** end to end (the first thing a server must answer).
+- [ ] _Cross-check (optional):_ copy the installed client to the capture host and run `tools/client_inspect.py`.
 
 ## Phase 2 — Core servers  🔴
 
@@ -73,6 +75,8 @@ Make people actually *play*.
 
 ## Immediate next steps
 
-1. Set up a Windows test bench (32-bit VM or otvdm) and **extract the client** from the preserved installer.
-2. Record the client's hostnames/ports → `tools/redirect/hostnames.txt`.
-3. Capture the **login handshake** against the logging stub and start `docs/PROTOCOL.md`.
+Follow **[win98-bench.md](win98-bench.md)**:
+
+1. Install the client on the Win98 box; point its DNS at the capture host's `dns_stub`.
+2. Read off the hostnames, find the ports (`tcpdump`), and record them → `tools/redirect/hostnames.txt` + `PROTOCOL.md`.
+3. Capture the **login handshake** with the logging stub and start documenting it in `docs/PROTOCOL.md`.

@@ -24,6 +24,17 @@ client's opening moves. Point the original client here with [../tools/redirect/]
 
 A `mplayer-stub` console script is also installed if you `pip install -e .`.
 
+## Discover + redirect with the DNS stub
+
+For a real test bench (e.g. the Windows 98 box — see [../docs/win98-bench.md](../docs/win98-bench.md)), point the
+old machine's DNS resolver at this host. The DNS stub logs every hostname the client looks up and answers the
+matched ones with your capture server's IP — discovery and redirection in one:
+
+```bash
+sudo python -m mplayer_server.dns_stub --ip 192.168.1.50 --match mplayer.com mpath.com --upstream 1.1.1.1
+# or --all to redirect every name (capture-all) for the first run
+```
+
 ## Develop & test
 
 ```bash
@@ -40,6 +51,7 @@ mplayer_server/
   hexdump.py        classic offset/hex/ascii dump
   capture.py        Capture: timestamped session logs of events + byte traffic
   logging_stub.py   Binding + LoggingStub: asyncio TCP/UDP logging listeners
+  dns_stub.py       DNSRedirector: logs lookups + redirects names to the capture host
   config.py         registry of discovered hostnames/ports (filled during Phase 1)
   __main__.py       CLI entry point
 tests/              unit + integration tests

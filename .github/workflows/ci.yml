@@ -33,5 +33,6 @@ jobs:
       - name: Smoke-check CLI and tools
         run: |
           python -m mplayer_server --help >/dev/null
+          python -m mplayer_server.dns_stub --help >/dev/null
           python ../tools/redirect/generate_hosts.py --file ../tools/redirect/hostnames.txt --ip 127.0.0.1 || true
           python -m py_compile ../tools/redirect/generate_hosts.py ../tools/client_inspect.py

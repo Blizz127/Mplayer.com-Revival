@@ -43,7 +43,8 @@ Both are first-class goals. See [docs/client-modernization.md](docs/client-moder
 .
 ├── docs/                  Architecture, roadmap, and reverse-engineering notes
 │   ├── ARCHITECTURE.md       Original service design + our revival design
-│   ├── ROADMAP.md            Phased plan (you are here: Phase 0)
+│   ├── ROADMAP.md            Phased plan (you are here: Phase 0 → 1)
+│   ├── win98-bench.md        Step-by-step Phase 1 capture bench (Windows 98)
 │   ├── PROTOCOL.md           Wire-protocol notes (filled in during Phase 1)
 │   ├── client-modernization.md  Faithful-vs-modern client tracks; Win11 path
 │   └── installer-analysis.md    What we know about the preserved installer
